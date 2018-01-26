@@ -29,10 +29,10 @@ handStop_cascade = cv2.CascadeClassifier('aGest.xml')
 #Get the picture (low resolution, so it should be quite fast)
 #Here you can also specify other parameters (e.g.:rotate the image)
 camera=picamera.PiCamera()
-camera.resolution = (800, 600)
-camera.rotation=180
+camera.resolution = (320, 240)
+#camera.rotation=180
 camera.framerate=40
-rawCapture = PiRGBArray(camera, size=tuple([800, 600]))
+rawCapture = PiRGBArray(camera, size=tuple([320, 240]))
 time.sleep(3);
 
 for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
@@ -62,7 +62,7 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
         stopCounter=0
         startCounter=0
         
-    if(stopCounter==3):
+    if(stopCounter==5):
         #call api
         print("Stop")
         stopCounter=0
@@ -70,7 +70,7 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
         sendJson('stop')
 
         
-    if(startCounter==3):
+    if(startCounter==5):
         #call api
         print("Start")
         stopCounter=0
